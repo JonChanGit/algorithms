@@ -14,7 +14,7 @@ import java.util.Map;
  * @author Jon Chan
  * @date 2019/2/18 16:52
  */
-public class Test01 {
+public class Solution01TwoSumTest {
     public int[] twoSum(int[] nums, int target){
         Map<Integer,Integer> map = new HashMap<>();
         int[] results = new int[2];
