@@ -14,23 +14,42 @@ import org.junit.Test;
  */
 public class Test02AddTwoNumber {
 
-    String getListNodeValue(ListNode node){
-        if(node == null){
-            throw new RuntimeException("Node is Empty");
-        }
-        if(node.getNext() != null){
-            return getListNodeValue(node.getNext()) + node.getVal();
-        }else{
-            return String.valueOf(node.getVal());
-        }
-    }
-
+    /**
+     * 思路：按小学加法计算思路，按位相加
+     * @param l1
+     * @param l2
+     * @return
+     */
     ListNode addTwoNumber(ListNode l1, ListNode l2){
-        int val1 = Integer.parseInt(getListNodeValue(l1));
-        int val2 = Integer.parseInt(getListNodeValue(l2));
-        int result = val2 + val1;
+        ListNode node1 = l1;
+        ListNode node2 = l2;
 
-        return null;
+        ListNode sentinel = new ListNode(0);
+        ListNode sentinelPoint = sentinel;
+
+        int sum = 0;
+
+        while (node1 != null || node2 != null){
+            // 取上一位进位值
+            sum /= 10;
+            if(node1 != null){
+                sum += node1.getVal();
+                node1 = node1.getNext();
+            }
+            if(node2 != null){
+                sum += node2.getVal();
+                node2 = node2.getNext();
+            }
+
+            sentinelPoint.setNext(new ListNode(sum % 10));
+            sentinelPoint = sentinelPoint.getNext();
+        }
+        if(sum / 10 == 1){
+            // 保留最终进位值
+            sentinelPoint.setNext(new ListNode(1));
+        }
+
+        return sentinel.getNext();
     }
 
     @Test
