@@ -1,6 +1,5 @@
 package cn.com.jonpad.multi_hex.thirty_six;
 
-import java.util.IllegalFormatException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -101,6 +100,9 @@ public class CountDefinition {
 
 
   private int[] addend2ArrayShuffle(int[] addend2, int length) {
+    if(length < addend2.length){
+      throw new IllegalArgumentException("加数2长度过大");
+    }
     int[] result = new int[length];
     int def = length - addend2.length;
     for (int i = 0; i < addend2.length; i++) {
