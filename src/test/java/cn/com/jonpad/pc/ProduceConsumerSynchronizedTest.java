@@ -1,4 +1,4 @@
-package cn.com.jonpad;
+package cn.com.jonpad.pc;
 
 import org.junit.Test;
 
