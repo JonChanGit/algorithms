@@ -1,41 +1,66 @@
-package cn.com.jonpad.pc;
+package cn.com.jonpad.juc.pc;
 
 import org.junit.Test;
 
-class NumericalBalance {
+import java.util.concurrent.locks.Condition;
+import java.util.concurrent.locks.Lock;
+import java.util.concurrent.locks.ReentrantLock;
+
+class NumericalBalanceLock {
   int num = 0;
 
-  public synchronized void increment() throws InterruptedException {
-    while (num != 0) { // 使用While循环 防止虚假唤醒
-      this.wait();
+  Lock lock = new ReentrantLock();
+  Condition condition = lock.newCondition();
+
+  public void increment() throws InterruptedException {
+
+    lock.lock();
+    try {
+      while (num != 0){
+        condition.await();
+      }
+      num++;
+      System.out.println(Thread.currentThread().getName() + ": " + num);
+      condition.signalAll();
+    }catch (Exception e){
+      e.printStackTrace();
+    }finally {
+      lock.unlock();
     }
-    num++;
-    System.out.println(Thread.currentThread().getName() + ": " + num);
-    this.notifyAll();
   }
 
-  public synchronized void decrement() throws InterruptedException {
-    while (num == 0) { // 使用While循环 防止虚假唤醒
-      this.wait();
+  public void decrement() throws InterruptedException {
+
+    lock.lock();
+    try {
+
+      while (num == 0){
+        condition.await();
+      }
+      num --;
+
+      System.out.println(Thread.currentThread().getName() + ": " + num);
+      condition.signalAll();
+
+    }finally {
+      lock.unlock();
     }
-    num--;
-    System.out.println(Thread.currentThread().getName() + ": " + num);
-    this.notifyAll();
   }
 }
 
 /**
  * 多线程生产者消费者测试
  *
- *  Synchronized 测试
+ *  Lock 测试
  *
  * @author Jon Chan
  * @date 2020/7/9 15:29
  */
-public class ProduceConsumerSynchronizedTest {
+public class ProduceConsumerLockTest {
   @Test
   public void test1() {
-    NumericalBalance nb = new NumericalBalance();
+
+    NumericalBalanceLock nb = new NumericalBalanceLock();
     new Thread(() -> {
       for (int i = 0; i < 1000; i++) {
         try {

@@ -1,4 +1,4 @@
-package cn.com.jonpad.sync_lock;
+package cn.com.jonpad.juc.sync_lock;
 
 import org.junit.Test;
 
