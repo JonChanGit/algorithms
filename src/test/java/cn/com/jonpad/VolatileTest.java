@@ -3,9 +3,24 @@ package cn.com.jonpad;
 import org.junit.Test;
 
 import java.util.Map;
+import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
 class TestData {
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    TestData testData = (TestData) o;
+    return num == testData.num &&
+      Objects.equals(aNum, testData.aNum);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(num, aNum);
+  }
+
   volatile int num = 0;
 
   public void addTo60() {

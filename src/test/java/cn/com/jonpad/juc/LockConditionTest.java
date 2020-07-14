@@ -2,6 +2,7 @@ package cn.com.jonpad.juc;
 
 import org.junit.Test;
 
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -107,5 +108,39 @@ public class LockConditionTest {
     }
 
 
+  }
+
+  @Test
+  public void testLock() throws InterruptedException {
+
+    Lock lock = new ReentrantLock();
+    new Thread(() -> {
+      lock.lock();
+      System.out.println(Thread.currentThread().getName() + "Lock");
+      try {
+        TimeUnit.SECONDS.sleep(10L);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }finally {
+        System.out.println(Thread.currentThread().getName() + "unlock");
+        lock.unlock();
+      }
+    }, "a").start();
+
+    new Thread(() -> {
+      lock.lock();
+      System.out.println(Thread.currentThread().getName() + "Lock");
+      try {
+        TimeUnit.SECONDS.sleep(10L);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }finally {
+        System.out.println(Thread.currentThread().getName() + "unlock");
+        lock.unlock();
+      }
+    }, "B").start();
+
+
+    TimeUnit.SECONDS.sleep(30L);
   }
 }
