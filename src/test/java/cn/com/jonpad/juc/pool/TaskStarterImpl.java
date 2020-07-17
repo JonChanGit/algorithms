@@ -29,7 +29,7 @@ public class TaskStarterImpl implements TaskStarter<Integer> {
   public TaskStarterImpl(File file, String pattern) {
     this.file = file;
     this.pattern = pattern;
-    this.destDir = "/Users/jonchan/tmp/GC/" + RandomUtil.randomString(8);
+    this.destDir =  System.getProperty("user.dir")  + "/" + RandomUtil.randomString(8);
   }
 
   @Override
