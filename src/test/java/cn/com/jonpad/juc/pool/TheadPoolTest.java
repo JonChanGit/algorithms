@@ -20,36 +20,34 @@ public class TheadPoolTest {
    * 测试文件
    */
   String[] testFilePaths = new String[]{
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
-    "00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
+    "00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip","00001.zip",
   };
 
   List<File> testFiles = new ArrayList<>(16);
@@ -60,14 +58,15 @@ public class TheadPoolTest {
     }
   }
 
-  int corePoolSize = 1;
-  int maximumPoolSize = 1;
-  BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<Runnable>(10);
+  int corePoolSize = 16;
+  int maximumPoolSize = 100;
+  BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<Runnable>(1000);
   ThreadFactory threadFactory = Executors.defaultThreadFactory();
   RejectedExecutionHandler handler = new ThreadPoolExecutor.CallerRunsPolicy();
 
   @Test
   public void test() throws Exception {
+
     ThreadPoolExecutor executor = new ThreadPoolExecutor(corePoolSize, maximumPoolSize,
       10L, TimeUnit.SECONDS,
       workQueue, threadFactory, handler);
@@ -105,8 +104,6 @@ public class TheadPoolTest {
 
     System.out.println(Tool.logFormatter("共匹配到 {} 个元素", sum));
 
-    /*TimeUnit.SECONDS.sleep(5);
-    */
 
   }
 }
