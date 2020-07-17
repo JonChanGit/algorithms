@@ -4,6 +4,7 @@ import org.junit.Test;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.*;
 
@@ -20,6 +21,35 @@ public class TheadPoolTest {
    */
   String[] testFilePaths = new String[]{
     "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
+    "00001.zip",
   };
 
   List<File> testFiles = new ArrayList<>(16);
@@ -34,7 +64,7 @@ public class TheadPoolTest {
   int maximumPoolSize = 1;
   BlockingQueue<Runnable> workQueue = new ArrayBlockingQueue<Runnable>(10);
   ThreadFactory threadFactory = Executors.defaultThreadFactory();
-  RejectedExecutionHandler handler = new ThreadPoolExecutor.AbortPolicy();
+  RejectedExecutionHandler handler = new ThreadPoolExecutor.CallerRunsPolicy();
 
   @Test
   public void test() throws Exception {
@@ -42,17 +72,41 @@ public class TheadPoolTest {
       10L, TimeUnit.SECONDS,
       workQueue, threadFactory, handler);
 
-    if(!testFiles.isEmpty()){
+    List<TaskStarter<Integer>> taskStarterList = new LinkedList<>();
 
-      testFiles.forEach( file -> executor.submit(new TaskStarterImpl(file)));
+    if (!testFiles.isEmpty()) {
+
+      testFiles.forEach(file -> {
+        TaskStarterImpl task = new TaskStarterImpl(file, ".*10.4.9.*.");
+        taskStarterList.add(task);
+      });
 
     }
 
+    List<Future<Integer>> futures = executor.invokeAll(taskStarterList);
 
-    TimeUnit.SECONDS.sleep(5);
     while (executor.getActiveCount() > 0) {
+      System.out.println("》》》》》》》》》》》》》》》当前有 " + executor.getActiveCount() + " 个线程活动中。");
       Thread.yield();
     }
+
+    int sum = futures.stream().mapToInt(value -> {
+      while (!value.isDone()) {
+      }
+      try {
+        return value.get();
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      } catch (ExecutionException e) {
+        e.printStackTrace();
+      }
+      return 0;
+    }).sum();
+
+    System.out.println(Tool.logFormatter("共匹配到 {} 个元素", sum));
+
+    /*TimeUnit.SECONDS.sleep(5);
+    */
 
   }
 }

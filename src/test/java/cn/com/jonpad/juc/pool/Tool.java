@@ -1,5 +1,7 @@
 package cn.com.jonpad.juc.pool;
 
+import cn.hutool.core.util.StrUtil;
+
 import java.text.MessageFormat;
 
 /**
@@ -8,6 +10,6 @@ import java.text.MessageFormat;
  */
 public class Tool {
   public static String logFormatter(String pattern, Object ... arguments){
-    return MessageFormat.format(Thread.currentThread().getName()+ "\t" + pattern, arguments);
+    return StrUtil.format(Thread.currentThread().getName()+ "\t" + pattern, arguments);
   }
 }
