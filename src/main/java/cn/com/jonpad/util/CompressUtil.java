@@ -119,7 +119,7 @@ public class CompressUtil {
                 while (entries.hasMoreElements()) {
                     ZipArchiveEntry entry = entries.nextElement();
                     File destFile = new File(destDir + File.separator + entry.getName());
-                  System.out.println("unzip -> " + entry.getName());
+                  // System.out.println("unzip -> " + entry.getName());
                     try {
                         if (entry.isDirectory()) {
                             destFile.mkdirs();

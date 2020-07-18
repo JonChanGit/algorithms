@@ -1,17 +1,14 @@
 package cn.com.jonpad.juc.pool;
 
 import cn.com.jonpad.util.CompressUtil;
+import cn.hutool.core.io.FileUtil;
 import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.List;
-import java.util.concurrent.ArrayBlockingQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
 /**
@@ -29,23 +26,25 @@ public class TaskStarterImpl implements TaskStarter<Integer> {
   public TaskStarterImpl(File file, String pattern) {
     this.file = file;
     this.pattern = pattern;
-    this.destDir =  System.getProperty("user.dir")  + "/" + RandomUtil.randomString(8);
+    // this.destDir =  System.getProperty("user.dir")  + "/" + RandomUtil.randomString(8);
+    this.destDir = "/home/hadoop/下载/test/GC/" + RandomUtil.randomString(8);
   }
 
   @Override
   public Integer call() throws Exception {
     int count = 0;
     try {
-      System.out.println(Tool.logFormatter("线程开始"));
+      // System.out.println(Tool.logFormatter("线程开始"));
       List<File> files = CompressUtil.decompressFile(this.file, this.destDir, "utf8");
-      System.out.println(Tool.logFormatter("需要处理的文件个数： 『{}』", files.size()));
+      // System.out.println(Tool.logFormatter("需要处理的文件个数： 『{}』", files.size()));
 
       for (File f : files) {
         count += fileProcessing(f);
       }
 
+      FileUtil.del(this.destDir);
 
-      System.out.println(Tool.logFormatter("线程结束"));
+      //System.out.println(Tool.logFormatter("线程结束"));
     }catch (Exception e){
       e.printStackTrace();
     }

@@ -1,8 +1,10 @@
 package cn.com.jonpad;
 
+import cn.hutool.core.io.FileUtil;
 import org.junit.Test;
 
-import java.util.Map;
+import java.io.File;
+import java.text.DecimalFormat;
 import java.util.Objects;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -115,5 +117,19 @@ public class VolatileTest {
     }
 
     System.out.println("complete finally num is :" + d.aNum);
+  }
+
+
+  @Test
+  public void test(){
+    File src = new File(Objects.requireNonNull(TestData.class.getClassLoader().getResource("00001.zip")).getPath());
+    for (int i = 1; i <= 100; i++) {
+      String name = new DecimalFormat("00000").format(i) + ".zip";
+      System.out.printf("\""+name+"\",");
+      FileUtil.copy(src,new File("/Users/jonchan/tmp/GC/"+name),false);
+      if(i % 10 == 0){
+        System.out.println();
+      }
+    }
   }
 }
