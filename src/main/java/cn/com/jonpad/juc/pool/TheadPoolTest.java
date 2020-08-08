@@ -77,6 +77,13 @@ public class TheadPoolTest {
 
   public static void main(String[] args) throws Exception {
 
+    Executors.newCachedThreadPool();
+    Executors.newFixedThreadPool(1);
+    Executors.newSingleThreadExecutor();
+    Executors.newScheduledThreadPool(1);
+    Executors.newSingleThreadScheduledExecutor();
+    Executors.newWorkStealingPool();
+
     byte[] b = new byte[1024];
 
     while (true){
